@@ -88,5 +88,57 @@ try{
 }
 
 })
+router.get("/:userId",async(req,res)=>{
+    let userId=req.params.userId
+    try{
+        const user= await User.findById({_id:userId})
+        console.log(user)
+        if(user){
+        res.json({
+            success:true,
+            message:"User fetch successfully",
+            user:user
+        })}else{
+            res.json({
+                success:false,
+                message:"User not found."
+            })
+        }
+    
+    
+    }catch(error){
+        res.status(400).json({message: error.message})
+    }
+    
+    })
+
+
+    router.put("/:userId",async(req,res)=>{
+        let userId=req.params.userId
+        let userbody={
+            username:req.body.username,
+            password:req.body.password
+        }
+        try{
+            const user= await User.findOneAndUpdate({_id:userId},userbody)
+            console.log(user)
+            if(user){
+            res.json({
+                success:true,
+                message:"User update successfully",
+                user:user
+            })}else{
+                res.json({
+                    success:false,
+                    message:"User not found."
+                })
+            }
+        
+        
+        }catch(error){
+            res.status(400).json({message: error.message})
+        }
+        
+        })
 
 module.exports=router
