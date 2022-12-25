@@ -4,6 +4,7 @@ const User=require("../model/User")
 
 router.get("/",async (req,res)=>{
 
+    
     try{
         const data = await User.find();
         res.json(data)
