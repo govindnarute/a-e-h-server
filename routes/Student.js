@@ -99,7 +99,35 @@ router.delete("/:studentId",async(req,res)=>{
         
         })
     
-    
+
+       router.put("/add/price/:studentId",async(req,res)=>{
+        let studentId=req.params.studentId
+        let data={
+            //totalFee:req.body.totalFee,
+            isFeePaid:req.body.isFeePaid,
+            feeDetails:req.body.feeDetails
+        }
+        try{
+            const student= await Student.findOneAndUpdate({_id:studentId},data)
+            console.log(student)
+            if(student){
+            res.json({
+                success:true,
+                message:"price  update successfully",
+                student:student
+            })}else{
+                res.json({
+                    success:false,
+                    message:"student not found."
+                })
+            }
+        
+        
+        }catch(error){
+            res.status(400).json({message: error.message})
+        }
+        
+        })
         router.put("/:studentId",async(req,res)=>{
             let studentId=req.params.studentId
             let data={
