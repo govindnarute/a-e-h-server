@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
   });
 app.use(bodyParser.json());
 const users=require('./routes/Users')
+const students=require('./routes/Student')
 //mongoose.connect(mongoString);
 mongoose.connect(mongoString, {
   useNewUrlParser: true,
@@ -46,7 +47,8 @@ var server = app.listen(process.env.PORT || 8080, function () {
     console.log("App now running on port", port);
 });
 
-app.use("/users",users)
+app.use("/api/users",users)
+app.use("/api/students",students)
 
 app.get("/api/email",function(req,res){
   
