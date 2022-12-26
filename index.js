@@ -36,6 +36,7 @@ database.on('error', (error) => {
 database.once('connected', () => {
     console.log('Database Connected');
 })
+
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
