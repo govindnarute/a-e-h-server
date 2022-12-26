@@ -7,12 +7,12 @@ const mongoose = require('mongoose');
 var mongoString="mongodb+srv://admin:admin@cluster-a-e-h.srjhzqi.mongodb.net/test?retryWrites=true&w=majority"
 // Create new instance of the express server
 var app = express();
-const users=require('./routes/Users')
+
 
 var cors = require('cors')
 app.use(cors())
 app.use(bodyParser.json());
-
+const users=require('./routes/Users')
 //mongoose.connect(mongoString);
 mongoose.connect(mongoString, {
   useNewUrlParser: true,
